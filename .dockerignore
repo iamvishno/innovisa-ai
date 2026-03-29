@@ -1,0 +1,16 @@
+node_modules/
+venv/
+__pycache__/
+*.pyc
+.env
+.env.local
+frontend/dist/
+chroma_db/
+.git/
+.github/
+*.md
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

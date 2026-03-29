@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+.env
+chroma_db/
+*.log
+fix_password.py
+test_endpoints.py
+.git/
