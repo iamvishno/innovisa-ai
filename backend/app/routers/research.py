@@ -12,8 +12,8 @@ router = APIRouter(prefix="/api/v1/research", tags=["research"])
 
 
 def _get_rag():
-    from app.main import rag_engine
-    return rag_engine
+    from app.main import get_rag_engine
+    return get_rag_engine()
 
 
 def _parse_published_at(value) -> datetime | None:

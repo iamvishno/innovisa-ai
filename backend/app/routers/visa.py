@@ -15,8 +15,8 @@ router = APIRouter(prefix="/api/v1/visa", tags=["visa"])
 
 
 def _get_rag():
-    from app.main import rag_engine
-    return rag_engine
+    from app.main import get_rag_engine
+    return get_rag_engine()
 
 
 @router.post("/compliance-check", response_model=VisaComplianceResponse)

@@ -30,13 +30,18 @@ limiter = Limiter(key_func=get_remote_address)
 rag_engine: RAGEngine | None = None  # type: ignore[assignment]
 
 
+def get_rag_engine() -> RAGEngine:
+    global rag_engine
+    if rag_engine is None:
+        rag_engine = RAGEngine()
+    return rag_engine
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global rag_engine
     logger.info("Starting InnoVisa AI backend...")
-    rag_engine = RAGEngine()
     start_scheduler()
-    logger.info("RAG engine and scheduler ready")
+    logger.info("Scheduler ready — RAG engine will initialise on first request")
     yield
     stop_scheduler()
     logger.info("Shutdown complete")
@@ -55,7 +60,12 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.FRONTEND_URL, "http://localhost:3000", "http://localhost:5173"],
+    allow_origins=[
+        settings.FRONTEND_URL,
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "https://innovisa-ai-web.fly.dev",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

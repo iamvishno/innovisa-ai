@@ -15,8 +15,8 @@ router = APIRouter(prefix="/api/v1/ideas", tags=["ideas"])
 
 
 def _get_rag():
-    from app.main import rag_engine
-    return rag_engine
+    from app.main import get_rag_engine
+    return get_rag_engine()
 
 
 @router.get("/{idea_id}", response_model=IdeaDetail)

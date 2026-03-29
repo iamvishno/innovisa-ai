@@ -1,5 +1,5 @@
 app = "innovisa-ai-web"
-primary_region = "lhr"
+primary_region = "ams"
 
 [build]
 
